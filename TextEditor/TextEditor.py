@@ -1,5 +1,5 @@
 # -*- encoding: utf8 -*-
-#python 2.7
+#python 3.6
 from tkinter import messagebox, filedialog
 from tkinter.messagebox import *
 from tkinter.filedialog import *
