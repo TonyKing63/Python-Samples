@@ -1,8 +1,7 @@
-#!/usr/bin/env python2.4
+#!/usr/bin/env python3.6
 
 # I like to put the python version on the #! line,
 # so that I can have multiple versions installed.
-
 """
 
 This is a small wxPython app developed to demonstrate how to write
@@ -12,8 +11,10 @@ Pythonic wxPython code.
 
 import wx
 
+
 class DemoPanel(wx.Panel):
     """This Panel hold two simple buttons, but doesn't really do anything."""
+
     def __init__(self, parent, *args, **kwargs):
         """Create the DemoPanel."""
         wx.Panel.__init__(self, parent, *args, **kwargs)
@@ -21,14 +22,14 @@ class DemoPanel(wx.Panel):
         self.parent = parent  # Sometimes one can use inline Comments
 
         NothingBtn = wx.Button(self, label="Do Nothing with a long label")
-        NothingBtn.Bind(wx.EVT_BUTTON, self.DoNothing )
+        NothingBtn.Bind(wx.EVT_BUTTON, self.DoNothing)
 
         MsgBtn = wx.Button(self, label="Send Message")
-        MsgBtn.Bind(wx.EVT_BUTTON, self.OnMsgBtn )
+        MsgBtn.Bind(wx.EVT_BUTTON, self.OnMsgBtn)
 
         Sizer = wx.BoxSizer(wx.VERTICAL)
-        Sizer.Add(NothingBtn, 0, wx.ALIGN_CENTER|wx.ALL, 5)
-        Sizer.Add(MsgBtn, 0, wx.ALIGN_CENTER|wx.ALL, 5)
+        Sizer.Add(NothingBtn, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        Sizer.Add(MsgBtn, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
         self.SetSizerAndFit(Sizer)
 
@@ -38,16 +39,18 @@ class DemoPanel(wx.Panel):
 
     def OnMsgBtn(self, event=None):
         """Bring up a wx.MessageDialog with a useless message."""
-        dlg = wx.MessageDialog(self,
-                               message='A completely useless message',
-                               caption='A Message Box',
-                               style=wx.OK|wx.ICON_INFORMATION
-                               )
+        dlg = wx.MessageDialog(
+            self,
+            message='A completely useless message',
+            caption='A Message Box',
+            style=wx.OK | wx.ICON_INFORMATION)
         dlg.ShowModal()
         dlg.Destroy()
 
+
 class DemoFrame(wx.Frame):
     """Main Frame holding the Panel."""
+
     def __init__(self, *args, **kwargs):
         """Create the DemoFrame."""
         wx.Frame.__init__(self, *args, **kwargs)
@@ -57,7 +60,8 @@ class DemoFrame(wx.Frame):
 
         FileMenu = wx.Menu()
 
-        item = FileMenu.Append(wx.ID_EXIT, text="&Quit")
+        # python2.4: item = FileMenu.Append(wx.ID_EXIT, text="&Quit")
+        item = FileMenu.Append(wx.ID_EXIT)
         self.Bind(wx.EVT_MENU, self.OnQuit, item)
 
         MenuBar.Append(FileMenu, "&File")
@@ -71,6 +75,7 @@ class DemoFrame(wx.Frame):
     def OnQuit(self, event=None):
         """Exit application."""
         self.Close()
+
 
 if __name__ == '__main__':
     app = wx.App()
