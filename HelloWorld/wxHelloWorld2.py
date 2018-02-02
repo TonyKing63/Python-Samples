@@ -5,6 +5,7 @@ Hello World, but with more meat.
 
 import wx
 
+
 class HelloFrame(wx.Frame):
     """
     A Frame that says Hello World
@@ -18,7 +19,7 @@ class HelloFrame(wx.Frame):
         pnl = wx.Panel(self)
 
         # and put some text with a larger bold font on it
-        st = wx.StaticText(pnl, label="Hello World!", pos=(25,25))
+        st = wx.StaticText(pnl, label="Hello World!", pos=(25, 25))
         font = st.GetFont()
         font.PointSize += 10
         font = font.Bold()
@@ -31,7 +32,6 @@ class HelloFrame(wx.Frame):
         self.CreateStatusBar()
         self.SetStatusText("Welcome to wxPython!")
 
-
     def makeMenuBar(self):
         """
         A menu bar is composed of menus, which are composed of menu items.
@@ -43,8 +43,9 @@ class HelloFrame(wx.Frame):
         fileMenu = wx.Menu()
         # The "\t..." syntax defines an accelerator key that also triggers
         # the same event
-        helloItem = fileMenu.Append(-1, "&Hello...\tCtrl-H",
-                "Help string shown in status bar for this menu item")
+        helloItem = fileMenu.Append(
+            -1, "&Hello...\tCtrl-H",
+            "Help string shown in status bar for this menu item")
         fileMenu.AppendSeparator()
         # When using a stock ID we don't need to specify the menu item's
         # label
@@ -69,25 +70,21 @@ class HelloFrame(wx.Frame):
         # each of the menu items. That means that when that menu item is
         # activated then the associated handler function will be called.
         self.Bind(wx.EVT_MENU, self.OnHello, helloItem)
-        self.Bind(wx.EVT_MENU, self.OnExit,  exitItem)
+        self.Bind(wx.EVT_MENU, self.OnExit, exitItem)
         self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
-
 
     def OnExit(self, event):
         """Close the frame, terminating the application."""
         self.Close(True)
 
-
     def OnHello(self, event):
         """Say hello to the user."""
         wx.MessageBox("Hello again from wxPython")
 
-
     def OnAbout(self, event):
         """Display an About Dialog"""
         wx.MessageBox("This is a wxPython Hello World sample",
-                      "About Hello World 2",
-                      wx.OK|wx.ICON_INFORMATION)
+                      "About Hello World 2", wx.OK | wx.ICON_INFORMATION)
 
 
 if __name__ == '__main__':
