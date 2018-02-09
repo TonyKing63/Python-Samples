@@ -6,8 +6,7 @@ from wx.lib.wordwrap import wordwrap
 
 
 class MyApp(wx.App):
-    def __init__(self, redirect=False, filename=None):
-        wx.App.__init__(self, redirect, filename)
+    def OnInit(self):
         self.frame = wx.Frame(None, wx.ID_ANY, title='My Title')
 
         self.panel = wx.Panel(self.frame, wx.ID_ANY)
@@ -27,6 +26,7 @@ class MyApp(wx.App):
         self.Bind(wx.EVT_BUTTON, self.OnButton, b)
 
         self.frame.Show()
+        return True
 
 
     def OnButton(self, evt):

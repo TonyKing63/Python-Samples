@@ -13,8 +13,8 @@ import sys
 
 import wx
 
-from StatusBar import *
-from FrogEditor import FrogEditor
+# from StatusBar import *
+# from FrogEditor import FrogEditor
 
 ABOUT_TEXT = """FrogEdit : Copyright 2001 Adam Feuer and Steve Howell
 wxEditor component : Copyright 1999 - 2001 Dirk Holtwic, Robin Dunn, Adam Feuer, Steve Howell
@@ -52,7 +52,8 @@ class FrogEditFrame(wx.Frame):
 
         wx.Frame.__init__(self, parent, ID, title, pos, size, style)
 
-        splitter = wx.SplitterWindow(self, -1, style=wx.NO_3D | wx.SP_3D)
+        # splitter = wx.SplitterWindow(self, -1, style=wx.NO_3D | wx.SP_3D)
+        splitter = wx.SplitterWindow(self, -1, style=wx.SP_3D)
         win = OutlinerPanel(splitter, -1, style=wx.CLIP_CHILDREN)
         win.parent = self
         log = self.MakeLogWindow(splitter)
@@ -91,13 +92,14 @@ class FrogEditFrame(wx.Frame):
         self.edl.SetStatus(log)
 
     def MakeStatusbar(self):
-        self.sb = CustomStatusBar(self)
+        # self.sb = CustomStatusBar(self)
         self.SetStatusBar(self.sb)
 
     def MakeLogWindow(self, container):
         log = wx.TextCtrl(
             container, -1, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.HSCROLL)
-        wx.Log_SetActiveTarget(wx.LogTextCtrl(log))
+        # wx.Log_SetActiveTarget(wx.LogTextCtrl(log))
+        wx.Log.SetActiveTarget(wx.LogTextCtrl(log))
         wx.LogMessage('window handle: %s' % self.GetHandle())
         return log
 
@@ -379,7 +381,8 @@ class FrogEditLauncher:
             return None
 
     def Main(self):
-        app = wx.PySimpleApp()
+        # app = wx.PySimpleApp()
+        app = wx.App()
         win = self.MakeAppFrame()
         win.Show(True)
         win.LoadInitialFile(self.GetArgvFilename())
